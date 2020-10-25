@@ -128,21 +128,6 @@ main {
     outline: none;
 }
 
-.account-list {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    width: 30vh;
-    margin-left: 10vw;
-}
-
-.account-list img {
-    cursor: pointer;
-    overflow: hidden;
-    position: relative;
-}
-
 .messages {
     display: flex;
     flex-direction: column;
