@@ -1,5 +1,3 @@
-const { stringify } = require("querystring");
-
 const messages = [
    {
       id: '1',
@@ -151,53 +149,78 @@ const messages = [
 
 function messagesModule(messages) {
    let msg = messages;
+   const filterObj = {
+      author: (item, author) => !author || item.author.toLowerCase().includes(author.toLowerCase()),
+      text: (item, text) => !item || item.text.toLowerCase().includes(text.toLowerCase()),
+      dateTo: (item, dateTo) => !dateTo || item.dateTo < dateTo,
+      dateFrom: (item, dateFrom) => !dateFrom || item.dateFrom > dateFrom
+   }
    return {
-     getMessages(skip = 0, top = 10, filterConfig) {
-      filterConfig = {
-         author: String,
-         dateFrom: Date,
-         dateTo: Date,
-         text: String
-      }   
-      return [...msg.slice(skip, skip + top)]
-         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-     },
-     getMessage(id) {
-       return msg.find(item => item.id === id);
-     },
-     validateMessage(msg) { 
-       return msg.id && msg.author && msg.dateFrom && msg.dateTo && msg.text;
-     },
-     addMessage(msgg) {
-       if (this.validateMessage(msgg)) {
-         msg.push(msgg);
-         return true;
-       } else {
-         return false;
-       }
-     },
-     removeMessage(id) {
-       const newMessages = msg.filter(item => item.id !== id);
-       if (newMessages.length !== msg.length) {
-         msg = newMessages;
-         return true;
-       } else {
-         return false;
-       }
-     },
-     editMessage(id, msgg) {
-       const messageToEdit = msg.find(item => item.id === id);
-       if (messageToEdit) {
-         msg = msg.map(item => {
-           return item.id === id ? {
-               ...messageToEdit,
-               ...msgg,
-             } : item;
-         });
-         return true;
-       } else {
-         return false;
-       }
-     }
+      getMessages(skip = 0, top = 10, filterConfig) {
+       
+         return [...msg.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))].slice(skip, skip + top);
+      },
+      getMessage(id) {
+         return msg.find(item => item.id === id);
+      },
+      validateMessage(msg) {
+         return msg.id && msg.author && msg.dateFrom && msg.dateTo && (msg.text.length <= 200) ? true : false;
+      },
+      addMessage(msgg) {
+         return this.validateMessage(msgg) ? msg.push(msgg) : false;      
+      },
+      removeMessage(id) {
+         const newMessages = msg.filter(item => item.id !== id);
+         if (newMessages.length !== msg.length) {
+            msg = newMessages;
+            return true;
+         } else {
+            return false;
+         }
+      },
+      editMessage(id, msgg) {
+         const messageToEdit = msg.find(item => item.id === id);
+         if (this.validateMessage(messageToEdit)) {
+            msg = msg.map(item => {
+               return item.id === id ? {
+                  ...messageToEdit,
+                  ...msgg,
+               } : item;
+            });
+            return true;
+         } else {
+            return false;
+         }
+      }
    };
+}
+const test = messagesModule([
+   {
+   id: 0,
+   author: 'Asd asd', 
+   dateFrom: '12345678', 
+   dateTo: '1234567', 
+   text: 'asdasd',
+   createdAt: new Date()
+ },
+ {
+   id: 1,
+   author: 'Vvv vvvv', 
+   dateFrom: '123543', 
+   dateTo: '1231231', 
+   text: 't8yotg7utuyt',
+   createdAt: new Date()
  }
+ ])
+ 
+ console.log(test.addMessage({
+   id: 2,
+   author: 'Vvv vvvv', 
+   dateFrom: '123543', 
+   dateTo: '1231231', 
+   text: 't8yotg7utuyt',
+   createdAt: new Date()
+ }))
+ 
+ console.log(test.getMessages())
+ 
