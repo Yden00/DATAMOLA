@@ -1,3 +1,5 @@
 {
-    "singleQuote": true
+    "singleQuote": true,
+    "space-in-parens": 2,
+    "space-before-function-paren": 0,
 }
