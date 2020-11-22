@@ -1,13 +1,18 @@
-/* eslint-disable prettier/prettier */
 class Message {
-  constructor(text = '', to = null, id = null, createdAt = null, author = null, isPersonal = null, user) {
+  constructor(
+    text = '',
+    to = null,
+    id = null,
+    createdAt = null,
+    author = null,
+    isPersonal = null,
+  ) {
     this._id = id;
     this.text = text;
     this._createdAt = createdAt || new Date();
     this._author = author;
     this.isPersonal = isPersonal ?? !!to;
     this._to = to;
-    this._user = user || author;
   }
 
   get id() {

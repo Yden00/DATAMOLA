@@ -1,4 +1,4 @@
-const messages = [
+export const messages = [
     {
       id: '1',
       text: ' You guys, you guys! Chef is going away.',
@@ -151,8 +151,6 @@ const messages = [
     },
   ];
 
-const Message = require('./messageContainer');
-
 class MessageList {
     constructor(msgs) {
         this.msgs = msgs;
@@ -167,35 +165,44 @@ class MessageList {
         text: (item) => item.text && item.text.length <= 200
     }
 
+    _user = null
+
+    get currentUser() {
+      return this._user;
+    }
+
+    set currentUser(user) {
+      this._user = user;
+    }
+
     getPage(skip = 0, top = 10, filterConfig) {
-        msg = messages.slice();
         Object.keys(filterConfig).forEach(key => {
-            this.msg = msg.filter(item => this._filterObj[key](item, filterConfig[key]));
+            this.messages = this.messages.filter(item => this._filterObj[key](item, filterConfig[key]));
         })
-        return [...msg.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))].slice(skip, skip + top);
+        return [...this.messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))].slice(skip, skip + top);
     }
 
     get(id) {
-        return msg.find(item => item.id === id);
+        return this.messages.find(item => item.id === id);
     }
 
-    add(Message) {
-        if (validate(Message) && this._user === Message.author) {
-            msg.id = `${+new Date()}`;
-            msg.createdAt = new Date();
-            messages.push(Message);
+    add(message) {
+        if (MessageList.validate(message) && this._user === message.author) {
+            message.id = `${+new Date()}`;
+            message.createdAt = new Date();
+            messages.push(message);
             return true;
         }
         return false;
     }
 
-    edit(id, Message) {
-        const messageToEdit = msg.find(item => item.id === id);
-        if (this.validateMessage(messageToEdit) && this._user === Message.author) {
-            msg = msg.map(item => {
+    edit(id, message) {
+        const messageToEdit = message.find(item => item.id === id);
+        if (this.validateMessage(messageToEdit) && this._user === message.author) {
+            this.messages = this.messages.map(item => {
                 return item.id === id ? {
                     ...messageToEdit,
-                    ...Message,
+                    ...message,
                 } : item;
             });
             return true;
@@ -218,5 +225,4 @@ class MessageList {
     }
 }
 
-
-
+export const messageList = new MessageList(messages);

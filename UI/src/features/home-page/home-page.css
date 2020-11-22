@@ -1,11 +1,11 @@
 @font-face {
     font-family: Roboto;
-    src: url(../assets/fonts/Roboto-Regular.ttf);
+    src: url(../../assets/fonts/Roboto-Regular.ttf);
 }
 
 @font-face {
     font-family: GothicA1;
-    src: url(../assets/fonts/GothicA1-Regular.ttf);
+    src: url(../../assets/fonts/GothicA1-Regular.ttf);
 }
 
 * {
@@ -41,7 +41,7 @@ body {
     background: linear-gradient(to bottom, var(--secondary-color) 33%, #E9E9E9 33%) no-repeat;
 }
 
-header {
+#header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,7 +96,7 @@ main {
     outline: none;
 }
 
-.dropdown {
+#dropdown {
     cursor: pointer;
     width: 12vw;
 }
@@ -114,7 +114,7 @@ main {
     line-height: 16px;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-filter-container:hover .dropdown-content {
     display: block;
 }
 
@@ -137,7 +137,7 @@ main {
     -webkit-transform: rotate(45deg);
 }
 
-.account-list {
+#account-list {
     display: none;
     padding: 10px;
     position: absolute;
@@ -158,8 +158,14 @@ main {
     align-items: center;
     justify-content: space-evenly;
 }
+.account p {
+    flex-basis: 60%;
+}
+.account img {
+    flex-basis: 40%;
+}
 
-.private-message:hover .account-list{
+.private-message:hover #account-list{
     display: block;
 }
 
@@ -175,7 +181,7 @@ main {
     outline: none;
 }
 
-.messages {
+#messages {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -227,7 +233,7 @@ main {
     margin: 15px 30px;
 }
 
-.messages button {
+#messages button {
     width: 300px;
     background-color: var(--main-color);
     color: var(--text-icons-chat-color);
