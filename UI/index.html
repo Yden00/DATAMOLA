@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InWorld</title>
-    <script src="./src/AuthorizationPage/AuthorizationPage.js"></script>
-    <script src="./src/RegistrationPage/RegistrationPage.js"></script>
-    <script src="./src/HomePage/HomePage.js"></script>
-    <script src="./src/ErrorPage/ErrorPage.js"></script>
-</head>
-<body>
-    <div class="root"></div>
-    <script src="app.js"></script>
-</body>
+    <link rel="stylesheet" href="./src/features/home-page/home-page.css" />
+  </head>
+  <body>
+    <div id="root">
+      <header id="header"></header>
+      <main>
+        <div class="main-content">
+            <div class="filter">
+                <div class="dropdown-filter-container">
+                    <img src="./src/assets/icons/Filter.svg" alt="Filter">
+                    <div id="dropdown">
+                    </div>
+                </div>
+                <div class="private-message">
+                    <button>Send private message <i class="arrow"></i></button>
+                    <div id="account-list"></div>
+                </div>
+                <div class="search-input">
+                    <input type="text" placeholder="Search by messages...">
+                    <img src="./src/assets/icons/Search.svg" alt="Search">
+                </div>
+            </div>
+          <div id="messages">
+            <button class="load">Load More</button>
+            </div>
+            <div class="send-input">
+                <input type="text" placeholder="Start typing your message here...">
+                <img src="./src/assets/icons/AttachFile.svg" alt="AttachFile">
+                <button>SEND</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="./src/views/HeaderView.js"></script>
+  <script src="./src/views/MessagesView.js"></script>
+  <script src="./src/views/FilterView.js"></script>
+  <script src="./src/views/ActiveUsersView.js"></script>
 </html>
