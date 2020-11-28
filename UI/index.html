@@ -4,12 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InWorld</title>
-    <link rel="stylesheet" href="./src/features/home-page/home-page.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-    <div id="root">
+  <body id="root">
       <header id="header"></header>
       <main>
+        <form class="login-form">
+          <h2>Welcome!</h2>
+          <label for="login">Login</label>
+          <input type="text" id="login">
+          <label for="password">Password</label>
+          <input type="text" id="password">
+          <a href="">For the first time InWorld?</a>
+          <button type="submit">Enter</button>
+        </form>
+        <form class="registration-form">
+          <h2>Registration</h2>
+          <label for="login">Login</label>
+          <input id="login" type="text">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="text">
+          <label for="mail">Mail</label>
+          <input id="mail" type="text">
+          <label for="password">Password</label>
+          <input id="password" type="text">
+          <label for="repeat-p">Repeat Password</label>
+          <input id="repeat-p" type="text">
+          <a href="#">Already Registered?</a>
+          <button type="submit">Submit</button>
+        </form>
         <div class="main-content">
             <div class="filter">
                 <div class="dropdown-filter-container">
@@ -26,7 +49,7 @@
                     <img src="./src/assets/icons/Search.svg" alt="Search">
                 </div>
             </div>
-          <div id="messages">
+          <div id="messages-wrapper">
             <button class="load">Load More</button>
             </div>
             <div class="send-input">
@@ -36,10 +59,21 @@
           </div>
         </div>
       </main>
-    </div>
+      <footer>
+        <div class="info">
+            <p>Vlad Teterev - me</p>
+            <p>vladtett2000@gmail.com - contact me:)</p>
+            <p>10.10.2020 - date of last change</p>
+        </div>
+        <p>InWorld Inc.</p>
+      </footer>
   </body>
+  <script src="./src/models/UserList.js"></script>
+  <script src="./src/models/MessagesList.js"></script>
+  <script src="./src/models/MessageContainer.js"></script>
   <script src="./src/views/HeaderView.js"></script>
   <script src="./src/views/MessagesView.js"></script>
   <script src="./src/views/FilterView.js"></script>
   <script src="./src/views/ActiveUsersView.js"></script>
+  <script src="./src/controlers/chatController.js"></script>
 </html>
