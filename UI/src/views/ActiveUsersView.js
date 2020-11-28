@@ -14,5 +14,4 @@ class ActiveUsersView {
     ).join('');
   }
 }
-const activeUsersView = new ActiveUsersView('account-list');
-activeUsersView.display(['Dima', 'Zhenya Zh.', 'Zhenya H.', 'Sasha', 'Pasha'])
+

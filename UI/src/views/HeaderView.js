@@ -18,6 +18,6 @@ class HeaderView {
         </div>
     `;
   }
-} 
+}
 
-export const headerView = new HeaderView('header');
+

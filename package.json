@@ -6,8 +6,9 @@
   "scripts": {
     "test": "test"
   },
+  "type": "module",
   "repository": {
-    "type": "git",
+    "type": "git", 
     "url": "git+https://github.com/ue4prog/DATAMOLA.git"
   },
   "author": "Vlad Teterev",

@@ -14,6 +14,3 @@ class FilterView {
     </div>`; 
   }
 }
-
-const filterView = new FilterView('dropdown');
-filterView.display('')

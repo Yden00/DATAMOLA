@@ -3,7 +3,7 @@ class UserList {
     this.users = users;
     this.activeUsers = activeUsers;
   }
+  
 }
 
 const userList = new UserList();
-module.exports = userList;
