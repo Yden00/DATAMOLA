@@ -3,7 +3,9 @@ class UserList {
     this.users = users;
     this.activeUsers = activeUsers;
   }
-  
+  addUser(user){
+    
+  }
 }
 
 const userList = new UserList();

@@ -12,11 +12,17 @@ class HeaderView {
             </a>
         </div>
         <div class="nav-bar">
-            <span>${params}</span>
+            <span>${params.login}</span>
             <a href="#"><img src="./src/assets/icons/Account.svg" alt="Account"></a>
-            <a href="#"><img src="./src/assets/icons/Logout.svg" alt="Logout"></a>
+            <a ><img class="log-out" src="./src/assets/icons/Logout.svg" alt="Logout"></a>
         </div>
     `;
+    document.querySelector('.log-out').addEventListener('click', (event) => {
+      event.preventDefault()
+      regForm.style.display = 'none';
+      logForm.style.display = 'flex';
+      chat.style.display = 'none';
+    })
   }
 }
 

@@ -14,24 +14,25 @@
           <label for="login">Login</label>
           <input type="text" id="login">
           <label for="password">Password</label>
-          <input type="text" id="password">
-          <a href="">For the first time InWorld?</a>
-          <button type="submit">Enter</button>
+          <input type="password" id="password">
+          <a class="reg-link">For the first time InWorld?</a>
+          <button class="check-in" type="submit">Enter</button>
+          <p class="error-log">Incorrect Login or Password!!!</p>
         </form>
         <form class="registration-form">
           <h2>Registration</h2>
           <label for="login">Login</label>
           <input id="login" type="text">
           <label for="phone">Phone number</label>
-          <input id="phone" type="text">
+          <input id="phone" type="tel">
           <label for="mail">Mail</label>
-          <input id="mail" type="text">
+          <input id="mail" type="email" required>
           <label for="password">Password</label>
-          <input id="password" type="text">
+          <input id="password" type="password">
           <label for="repeat-p">Repeat Password</label>
-          <input id="repeat-p" type="text">
-          <a href="#">Already Registered?</a>
-          <button type="submit">Submit</button>
+          <input id="repeat-p" type="password">
+          <a class="log-link" href="">Already Registered?</a>
+          <button class="submit-reg" type="submit">Submit</button>
         </form>
         <div class="main-content">
             <div class="filter">
@@ -44,18 +45,20 @@
                     <button>Send private message <i class="arrow"></i></button>
                     <div id="account-list"></div>
                 </div>
+                <button class="load">Load More</button>
                 <div class="search-input">
                     <input type="text" placeholder="Search by messages...">
                     <img src="./src/assets/icons/Search.svg" alt="Search">
                 </div>
+                
             </div>
           <div id="messages-wrapper">
-            <button class="load">Load More</button>
+            
             </div>
             <div class="send-input">
-                <input type="text" placeholder="Start typing your message here...">
+                <input class="send" type="text" placeholder="Start typing your message here...">
                 <img src="./src/assets/icons/AttachFile.svg" alt="AttachFile">
-                <button>SEND</button>
+                <button class="send-msg">SEND</button>
           </div>
         </div>
       </main>
@@ -76,4 +79,5 @@
   <script src="./src/views/FilterView.js"></script>
   <script src="./src/views/ActiveUsersView.js"></script>
   <script src="./src/controlers/chatController.js"></script>
+  <script src="./src/controlers/events.js"></script>
 </html>

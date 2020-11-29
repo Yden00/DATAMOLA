@@ -58,7 +58,8 @@ class MessageList {
   }
   remove(id) {
     const newMessages = this.messages.filter(item => item.id !== id);
-    if (newMessages.length !== this.messages.length && this._user === this.messages.author) {
+    console.log(newMessages, this._user, this.messages.author)
+    if (newMessages.length !== this.messages.length) {
       this.messages = newMessages;
       return true;
     } else {

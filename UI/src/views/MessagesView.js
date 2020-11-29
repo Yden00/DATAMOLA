@@ -9,13 +9,14 @@ class MessagesView {
         return `<div class="message-container">
        <div><img src="./src/assets/icons/ChatAccount.svg" alt="Account"></div>
       <div>
-          <span>${el.author}</span>
+          <span>${el.author.login}</span>
           <p>${el.text}</p>
       </div>
       <span class="time">${el.createdAt.toLocaleString()}</span>
+      <img data-message-id="${el.id}" class="remove-img" src="./src/assets/icons/Delete-msg.svg" alt="delete">
       </div>`;
       }
-    ).join('');
-  }
+    ).join('')
+  } 
 }
 
