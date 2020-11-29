@@ -1,3 +1,4 @@
+
 class ChatController {
   constructor() {
     this.activeUsersView = new ActiveUsersView('account-list');
@@ -45,11 +46,4 @@ class ChatController {
 }
 
 const chatController = new ChatController();
-chatController.setCurrentUser('Vlad')
-chatController.addMessage({ text: 'privet', isPersonal: false, to: null })
-chatController.setCurrentUser('Daniil')
-chatController.addMessage({ text: 'how are you', isPersonal: false, to: null })
-chatController.setCurrentUser('Serega')
-chatController.addMessage({ text: 'fine', isPersonal: false, to: null })
-chatController.setCurrentUser('Anton')
-chatController.addMessage({ text: 'and you?', isPersonal: false, to: null })
+
