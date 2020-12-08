@@ -21,7 +21,7 @@ class MessageList {
   set currentUser(user) {
     this._user = user;
   }
-  getPage(skip = 0, top = 10, filterConfig = {}) {
+  getPage(skip = 0, top = 10, filterConfig = {}) { 
     Object.keys(filterConfig).forEach(key => {
       this.messages = this.messages.filter(item => MessageList._filterObj[key](item, filterConfig[key]));
     })
@@ -36,7 +36,7 @@ class MessageList {
     if (MessageList.validate(message) && this._user === message.author) {
       message.id = `${+new Date()}`;
       message.createdAt = new Date();
-      this.messages.push(message);
+       this.messages.push(message);
       return true
     }
     return false;
@@ -58,7 +58,6 @@ class MessageList {
   }
   remove(id) {
     const newMessages = this.messages.filter(item => item.id !== id);
-    console.log(newMessages, this._user, this.messages.author)
     if (newMessages.length !== this.messages.length) {
       this.messages = newMessages;
       return true;
@@ -71,5 +70,9 @@ class MessageList {
     return Object.keys(MessageList._validateObj).every(key => MessageList._validateObj[key](msg));
   }
 }
+
+const fetchMessages = async (skip = 0, top = 10, author = '', dateFrom = '', dateTo = '', text = '') => {
+  return await fetch(`https://jslabdb.datamola.com/messages?skip=${skip}&top=${top}&author=${author}&dateFrom=${dateFrom}&dateTo=${dateTo}&text=${text}`)
+};
 
 const messageList = new MessageList();

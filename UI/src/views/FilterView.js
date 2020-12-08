@@ -3,7 +3,7 @@ class FilterView {
     this.containerId = containerId;
   }
 
-  display(filterObj) {
+  display() {
     document.querySelector(
       `#${this.containerId}`
     ).innerHTML = `

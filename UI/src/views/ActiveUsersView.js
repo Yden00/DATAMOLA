@@ -8,7 +8,7 @@ class ActiveUsersView {
       (el) => `
         <div class="account">
           <img src="./src/assets/icons/SmallAccount.svg" alt="smallAccount">
-          <p>${el}</p>
+          <p class="active-user">${el}</p>
         </div>
         `
     ).join('');

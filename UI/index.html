@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InWorld</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body id="root">
-      <header id="header"></header>
-      <main>
-        <form class="login-form">
-          <h2>Welcome!</h2>
-          <label for="login">Login</label>
-          <input type="text" id="login">
-          <label for="password">Password</label>
-          <input type="password" id="password">
-          <a class="reg-link">For the first time InWorld?</a>
-          <button class="check-in" type="submit">Enter</button>
-          <p class="error-log">Incorrect Login or Password!!!</p>
-        </form>
-        <form class="registration-form">
-          <h2>Registration</h2>
-          <label for="login">Login</label>
-          <input id="login" type="text">
-          <label for="phone">Phone number</label>
-          <input id="phone" type="tel">
-          <label for="mail">Mail</label>
-          <input id="mail" type="email" required>
-          <label for="password">Password</label>
-          <input id="password" type="password">
-          <label for="repeat-p">Repeat Password</label>
-          <input id="repeat-p" type="password">
-          <a class="log-link" href="">Already Registered?</a>
-          <button class="submit-reg" type="submit">Submit</button>
-        </form>
-        <div class="main-content">
-            <div class="filter">
-                <div class="dropdown-filter-container">
-                    <img src="./src/assets/icons/Filter.svg" alt="Filter">
-                    <div id="dropdown">
-                    </div>
-                </div>
-                <div class="private-message">
-                    <button>Send private message <i class="arrow"></i></button>
-                    <div id="account-list"></div>
-                </div>
-                <button class="load">Load More</button>
-                <div class="search-input">
-                    <input type="text" placeholder="Search by messages...">
-                    <img src="./src/assets/icons/Search.svg" alt="Search">
-                </div>
-                
-            </div>
-          <div id="messages-wrapper">
-            
-            </div>
-            <div class="send-input">
-                <input class="send" type="text" placeholder="Start typing your message here...">
-                <img src="./src/assets/icons/AttachFile.svg" alt="AttachFile">
-                <button class="send-msg">SEND</button>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InWorld</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body id="root">
+  <header id="header"></header>
+  <main>
+    <form class="login-form">
+      <h2>Welcome!</h2>
+      <label for="login">Login</label>
+      <input type="text" id="login">
+      <label for="password">Password</label>
+      <input type="password" id="password">
+      <a class="reg-link">For the first time InWorld?</a>
+      <button class="check-in" type="submit">Enter</button>
+      <p class="error-log">Incorrect Login or Password!!!</p>
+    </form>
+    <form class="registration-form">
+      <h2>Registration</h2>
+      <label for="login">Login</label>
+      <input id="login" type="text">
+      <label for="phone">Phone number</label>
+      <input id="phone" type="tel">
+      <label for="mail">Mail</label>
+      <input id="mail" type="email" required>
+      <label for="password">Password</label>
+      <input id="password" type="password">
+      <label for="repeat-p">Repeat Password</label>
+      <input id="repeat-p" type="password">
+      <a class="log-link" href="">Already Registered?</a>
+      <button class="submit-reg" type="submit">Submit</button>
+    </form>
+    <div class="main-content">
+      <div class="filter">
+        <div class="dropdown-filter-container">
+          <img class="filter-img" src="./src/assets/icons/Filter.svg" alt="Filter">
+          <div id="dropdown"></div>
         </div>
-      </main>
-      <footer>
-        <div class="info">
-            <p>Vlad Teterev - me</p>
-            <p>vladtett2000@gmail.com - contact me:)</p>
-            <p>10.10.2020 - date of last change</p>
+        <div class="private-message">
+          <button class="send-private-message">Send private message <i class="arrow"></i></button>
+          <div id="account-list"></div>
         </div>
-        <p>InWorld Inc.</p>
-      </footer>
-  </body>
-  <script src="./src/models/UserList.js"></script>
-  <script src="./src/models/MessagesList.js"></script>
-  <script src="./src/models/MessageContainer.js"></script>
-  <script src="./src/views/HeaderView.js"></script>
-  <script src="./src/views/MessagesView.js"></script>
-  <script src="./src/views/FilterView.js"></script>
-  <script src="./src/views/ActiveUsersView.js"></script>
-  <script src="./src/controlers/chatController.js"></script>
-  <script src="./src/controlers/events.js"></script>
+        <button class="load">Load More</button>
+        <div class="search-input">
+          <input type="text" placeholder="Search by messages...">
+          <img src="./src/assets/icons/Search.svg" alt="Search">
+        </div>
+
+      </div>
+      <div id="messages-wrapper"></div>
+      <div class="send-input">
+        <p class="msg-user"></p>
+        <input class="send" type="text" placeholder="Start typing your message here...">
+        <img src="./src/assets/icons/AttachFile.svg" alt="AttachFile">
+        <button class="send-msg">SEND</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="info">
+      <p>Vlad Teterev - me</p>
+      <p>vladtett2000@gmail.com - contact me:)</p>
+      <p>10.10.2020 - date of last change</p>
+    </div>
+    <p>InWorld Inc.</p>
+  </footer>
+</body>
+<script src="./src/models/UserList.js"></script>
+<script src="./src/models/MessagesList.js"></script>
+<script src="./src/models/MessageContainer.js"></script>
+<script src="./src/views/HeaderView.js"></script>
+<script src="./src/views/MessagesView.js"></script>
+<script src="./src/views/FilterView.js"></script>
+<script src="./src/views/ActiveUsersView.js"></script>
+<script src="./src/controlers/chatController.js"></script>
+<script src="./src/controlers/events.js"></script>
 </html>

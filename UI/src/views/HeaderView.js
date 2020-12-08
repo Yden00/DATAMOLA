@@ -12,7 +12,7 @@ class HeaderView {
             </a>
         </div>
         <div class="nav-bar">
-            <span>${params.login}</span>
+            <span class="user">${params.login}</span>
             <a href="#"><img src="./src/assets/icons/Account.svg" alt="Account"></a>
             <a ><img class="log-out" src="./src/assets/icons/Logout.svg" alt="Logout"></a>
         </div>

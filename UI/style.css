@@ -77,7 +77,7 @@ main {
 
 .main-content {
   display: none;
-  grid-template-rows: 1fr 7fr 1fr;
+  grid-template-rows: 2fr 10fr 2fr;
   background-color: var(--text-icons-chat-color);
   width: 100%;
   height: 100%;
@@ -140,6 +140,9 @@ main {
   display: none;
   color: #ff0000
 }
+#delivered{
+  display: none;
+}
 
 .login-form h2 {
   padding: 25px 50px 50px 50px;
@@ -150,6 +153,11 @@ main {
   background-color: #F7F7F7;
   padding: 2vh 3vw 2vh 3vw;
   justify-content: space-between;
+  align-items: center;
+}
+
+.filter-img{
+  cursor: pointer;
 }
 
 .date {
@@ -174,10 +182,6 @@ main {
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-}
-
-.dropdown-filter-container:hover .dropdown-content {
-  display: block;
 }
 
 .private-message button {
@@ -214,11 +218,27 @@ main {
   overflow-y: scroll;
 }
 
+.display-none {
+  display: block;
+  padding: 10px;
+  position: absolute;
+  width: 180px;
+  border: #2F9AE0 1px solid;
+  background-color: var(--text-icons-chat-color);
+  z-index: 1;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
 .account {
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  cursor: pointer;
 }
 
 .account p {
@@ -229,14 +249,15 @@ main {
   flex-basis: 40%;
 }
 
-.private-message:hover #account-list {
-  display: block;
-}
-
 .send-input {
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
+.send-input p {
+  display: none;
+  padding: 0 10px 0 10px;
 }
 
 .search-input input {
@@ -302,7 +323,10 @@ main {
   cursor: pointer;
 }
 
-
+.msg-user {
+  display: none;
+  padding-left: 10vw;
+}
 .message-container img {
   margin: 15px 30px;
 }
@@ -326,7 +350,7 @@ main {
 
 .send-input {
   display: flex;
-  padding: 0 50px 0 50px;
+  padding: 0 50px 0 0;
   background-color: #F7F7F7;
   justify-content: space-between;
 }
@@ -366,6 +390,7 @@ main {
   cursor: pointer;
   color: var(--text-icons-chat-color);
 }
+
 
 footer {
   display: flex;

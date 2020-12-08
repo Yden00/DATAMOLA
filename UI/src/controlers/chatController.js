@@ -22,7 +22,7 @@ class ChatController {
       isPersonal
     );
     messageList.add(message);
-    this.messagesView.display(messageList.getPage());
+    this.messagesView.display(messageList.getPage( messageList.messages.length - 10 > 0 ? messageList.messages.length - 10 : 0 ,10,{}));
   }
 
   editMessage(id, { text, isPersonal, to }) {
@@ -41,9 +41,10 @@ class ChatController {
   }
 
   showActiveUsers() {
-    return userList.activeUsers;
+    this.activeUsersView.display(userList.activeUsers)
   }
 }
 
 const chatController = new ChatController();
-
+chatController.showActiveUsers()
+chatController.filterView.display()
