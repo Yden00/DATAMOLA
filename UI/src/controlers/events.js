@@ -43,9 +43,9 @@ document.querySelector('.send-msg').addEventListener('click', (event) => {
     document.querySelector('.send').value = '';
   } else {
     chatController.addMessage({
-      text: messageInput.value, isPersonal: true, to: userList.users
-        .filter((el) => el === document.querySelector('.msg-user').textContent
-          .substring(1)).join('')
+      text: messageInput.value,
+      isPersonal: true,
+      to: userList.users.filter((el) => el === document.querySelector('.msg-user').textContent.substring(1)).join()
     })
     document.querySelector('.to').style.display = 'inline';
     document.querySelector('.msg-user').style.display = 'none';
@@ -54,9 +54,9 @@ document.querySelector('.send-msg').addEventListener('click', (event) => {
   event.stopPropagation()
 })
 
-const removeImgs = document.getElementById('messages-wrapper');
-removeImgs.addEventListener("click", (event) => {
-  if (event.target.dataset && document.querySelector('.user')?.textContent === document.querySelector('.author').textContent) {
+document.getElementById('messages-wrapper').addEventListener("click", (event) => {
+  if (event.target.dataset && event.target === document.querySelector('.remove-img') &&
+    document.querySelector('.user')?.textContent === document.querySelector('.author').textContent) {
     chatController.removeMessage(event.target.dataset.messageId);
     event.stopPropagation()
   }
@@ -89,6 +89,7 @@ async function submitLogForm(event) {
   })
   await fetch('https://jslabdb.datamola.com/auth/login', {
     method: 'POST',
+    mode: 'no-cors',
     body: JSON.stringify({
       name: logObj.login,
       pass: logObj.password
@@ -129,5 +130,22 @@ document.querySelector('.private').addEventListener('change', (event) => {
       messageList.messages.filter((el) => Object.values(el).slice(-1).join('') !== ""))
   } else {
     chatController.showMessages()
+  }
+})
+
+document.getElementById('messages-wrapper').addEventListener('click', (event) => {
+  if (event.target.dataset && event.target === document.querySelector('.edit-img') && document.querySelector('.user')?.textContent === document.querySelector('.author').textContent) {
+    document.querySelector('.message-text').style.display = 'none'
+    document.querySelector('.edit-text').style.display = 'block'
+    document.querySelector('.edit-btn').style.display = 'block'
+  }
+  event.stopPropagation()
+})
+document.getElementById('messages-wrapper').addEventListener('click', (event) => {
+  if (event.target === document.querySelector('.edit-btn')) {
+    document.querySelector('.message-text').innerText = document.querySelector('.edit-text').value;
+    document.querySelector('.edit-text').style.display = 'none';
+    document.querySelector('.edit-btn').style.display = 'none';
+    document.querySelector('.message-text').style.display = 'block';
   }
 })

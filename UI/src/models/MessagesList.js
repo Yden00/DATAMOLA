@@ -71,8 +71,5 @@ class MessageList {
   }
 }
 
-const fetchMessages = async (skip = 0, top = 10, author = '', dateFrom = '', dateTo = '', text = '') => {
-  return await fetch(`https://jslabdb.datamola.com/messages?skip=${skip}&top=${top}&author=${author}&dateFrom=${dateFrom}&dateTo=${dateTo}&text=${text}`)
-};
 
 const messageList = new MessageList();

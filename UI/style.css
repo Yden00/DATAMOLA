@@ -291,6 +291,21 @@ main {
   background: var(--main-color);
 }
 
+.edit-img {
+  cursor: pointer;
+}
+
+.edit-text {
+  display: none;
+}
+
+.edit-btn {
+  display: none;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--text-icons-chat-color);
+}
+
 .message-container {
   display: flex;
   height: 110px;

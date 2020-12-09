@@ -22,7 +22,7 @@ class ChatController {
       isPersonal
     );
     messageList.add(message);
-    this.messagesView.display(messageList.getPage( messageList.messages.length - 10 > 0 ? messageList.messages.length - 10 : 0 ,10,{}));
+    this.messagesView.display(messageList.getPage(messageList.messages.length - 10 > 0 ? messageList.messages.length - 10 : 0, 10, {}));
   }
 
   editMessage(id, { text, isPersonal, to }) {
@@ -35,9 +35,14 @@ class ChatController {
     this.messagesView.display(messageList.getPage());
   }
 
-  showMessages(skip, top, filterConfig) {
+  async showMessages(skip, top, filterConfig) {
     const messages = messageList.getPage(skip, top, filterConfig);
-    this.messagesView.display(messages);
+    const loadMore = await chatApiService.getMessages().then(res => {
+      return res.json()
+    })
+    this.messagesView.display(loadMore);
+    console.log(loadMore, messages)
+
   }
 
   showActiveUsers() {
@@ -48,3 +53,4 @@ class ChatController {
 const chatController = new ChatController();
 chatController.showActiveUsers()
 chatController.filterView.display()
+
