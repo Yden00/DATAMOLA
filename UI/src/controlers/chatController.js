@@ -7,11 +7,15 @@ class ChatController {
     this.messagesView = new MessagesView('messages-wrapper');
   }
   setCurrentUser(user) {
-    messageList.currentUser = user;
     this.headerView.display(user);
+    this.currentUser = user;
   }
 
-  addMessage({ text, isPersonal, to }) {
+  getCurrentUser() {
+    return this.currentUser
+  }
+
+  async addMessage({ text, isPersonal, to }) {
     const user = messageList.currentUser;
     const message = new Message(
       text,
@@ -21,8 +25,10 @@ class ChatController {
       user,
       isPersonal
     );
-    messageList.add(message);
-    this.messagesView.display(messageList.getPage(messageList.messages.length - 10 > 0 ? messageList.messages.length - 10 : 0, 10, {}));
+    const messages = await chatApiService.getMessages().then(res => {
+      return res.json()
+    })
+    this.messagesView.display(messages);
   }
 
   editMessage(id, { text, isPersonal, to }) {
@@ -37,20 +43,18 @@ class ChatController {
 
   async showMessages(skip, top, filterConfig) {
     const messages = messageList.getPage(skip, top, filterConfig);
-    const loadMore = await chatApiService.getMessages().then(res => {
+    const loadMore = await chatApiService.getMessages(0,0,'','','','').then(res => {
       return res.json()
     })
     this.messagesView.display(loadMore);
-    console.log(loadMore, messages)
-
   }
 
-  showActiveUsers() {
-    this.activeUsersView.display(userList.activeUsers)
+  async showActiveUsers() {
+    const apiUsers = await chatApiService.getUsers()
+    this.activeUsersView.display(apiUsers)
   }
 }
 
 const chatController = new ChatController();
-chatController.showActiveUsers()
 chatController.filterView.display()
 

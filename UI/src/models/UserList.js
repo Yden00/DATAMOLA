@@ -8,4 +8,4 @@ class UserList {
   }
 }
 
-const userList = new UserList(['Dima', 'Zhenya Zh.', 'Zhenya H.', 'Sasha', 'Pasha'], ['Dima', 'Zhenya Zh.']);
+const userList = new UserList();

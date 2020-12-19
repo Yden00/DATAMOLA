@@ -1,57 +1,53 @@
-
 const chat = document.querySelector('.main-content');
 const regForm = document.querySelector('.registration-form');
 const logForm = document.querySelector('.login-form');
 
-async function submitRegForm(event) {
-  event.preventDefault();
-  let regObj = {}
-  event.target.querySelectorAll("input").forEach(item => {
-    regObj = {
-      ...regObj,
-      [item.id]: item.value
-    }
-  })
-  await fetch('https://jslabdb.datamola.com/auth/register', {
-    method: 'POST',
-    body: JSON.stringify({
-      name: regObj.login,
-      pass: regObj.password
-    })
-  }).then(() => {
-    chatController.setCurrentUser(regObj);
-    localStorage.setItem('user', JSON.stringify(regObj));
-    regForm.style.display = 'none';
-    logForm.style.display = 'flex';
-    userList.addUser(regObj);
-  });
-}
-regForm.addEventListener('submit', submitRegForm);
+regForm.addEventListener('submit', chatApiService.postRegister);
+logForm.addEventListener('submit', chatApiService.postLogin)
 
-document.querySelectorAll('.account').forEach((el) => {
-  el.addEventListener('click', (event) => {
-    document.querySelector('.msg-user').innerHTML = `@${userList.users.filter((el) => el === event.target.textContent)}`;
-    document.querySelector('.msg-user').style.display = 'inline';
-  })
-})
+
+// document.querySelectorAll('.account').forEach((el) => {
+//   el.addEventListener('click',(event) => {
+//     const apiUsers = chatApiService.getUsers()
+//     document.querySelector('.msg-user').innerHTML = `@${apiUsers.filter((el) => el.name === event.target.textContent)}`;
+//     document.querySelector('.msg-user').style.display = 'inline';
+
+//   })    
+// })
+
+document.getElementById('account-list').addEventListener('click', event => msgUser(event))
+
+async function msgUser(event) {
+  event.preventDefault()
+  const apiUsers = await chatApiService.getUsers()
+  document.querySelector('.msg-user').innerHTML = `@${apiUsers.find(el => el.name === event.target.textContent).name}`;
+  document.querySelector('.msg-user').style.display = 'inline';
+  event.stopPropagation()
+}
+
 
 const messageInput = document.querySelector('.send');
 document.querySelector('.send-msg').addEventListener('click', (event) => {
-  event.preventDefault()
   if (document.querySelector('.msg-user').textContent === '' || document.querySelector('.msg-user').style.display === 'none') {
-    chatController.addMessage({ text: messageInput.value, isPersonal: false, to: null })
-    document.querySelector('.send').value = '';
-  } else {
-    chatController.addMessage({
-      text: messageInput.value,
-      isPersonal: true,
-      to: userList.users.filter((el) => el === document.querySelector('.msg-user').textContent.substring(1)).join()
+    const user = chatController.getCurrentUser()
+    chatApiService.postMessages(user.login, user.password, { text: messageInput.value, isPersonal: false, to: null, author: user.login }).then(res => {
+      chatController.addMessage({ text: messageInput.value, isPersonal: false, to: null, author: user.login })
+      document.querySelector('.send').value = '';
     })
-    document.querySelector('.to').style.display = 'inline';
-    document.querySelector('.msg-user').style.display = 'none';
-    document.querySelector('.send').value = '';
+  } else {
+    chatApiService.postMessages(user.login, user.password, { text: messageInput.value, isPersonal: false, to: null, author: user.login }).then(res => {
+      chatController.addMessage({
+        text: messageInput.value,
+        isPersonal: true,
+        to: userList.users.filter((el) => el === document.querySelector('.msg-user').textContent.substring(1)).join()
+      })
+      document.querySelector('.to').style.display = 'inline';
+      document.querySelector('.msg-user').style.display = 'none';
+      document.querySelector('.send').value = '';
+
+      event.stopPropagation()
+    })
   }
-  event.stopPropagation()
 })
 
 document.getElementById('messages-wrapper').addEventListener("click", (event) => {
@@ -78,33 +74,8 @@ document.querySelector('.reg-link').addEventListener('click', (event) => {
   logForm.style.display = 'none';
 })
 
-async function submitLogForm(event) {
-  event.preventDefault();
-  let logObj = {};
-  event.target.querySelectorAll("input").forEach(item => {
-    logObj = {
-      ...logObj,
-      [item.id]: item.value
-    }
-  })
-  await fetch('https://jslabdb.datamola.com/auth/login', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify({
-      name: logObj.login,
-      pass: logObj.password
-    })
-  }).then(res => {
-    chatController.setCurrentUser(logObj);
-    regForm.style.display = 'none';
-    logForm.style.display = 'none';
-    chat.style.display = 'grid';
-  }).catch(err => {
-    document.querySelector('.error-log').style.display = "inline";
-    setTimeout(() => { document.querySelector('.error-log').style.display = "none"; }, 5000);
-  });
-}
-logForm.addEventListener('submit', submitLogForm);
+
+logForm.addEventListener('submit', chatApiService.postRegister);
 
 document.querySelector('.private-message').addEventListener('click', () => {
   const accountList = document.getElementById('account-list');

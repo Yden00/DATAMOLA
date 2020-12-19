@@ -4,7 +4,6 @@ class MessagesView {
   }
 
   display(messagesArr) {
-    console.log(messagesArr)
     document.querySelector(`#${this.containerId}`).innerHTML = messagesArr.map(
       (message) => {
         return `<div class="message-container">
