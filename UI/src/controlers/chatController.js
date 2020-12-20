@@ -43,7 +43,7 @@ class ChatController {
 
   async showMessages(skip, top, filterConfig) {
     const messages = messageList.getPage(skip, top, filterConfig);
-    const loadMore = await chatApiService.getMessages(0,0,'','','','').then(res => {
+    const loadMore = await chatApiService.getMessages(0, 0, '', '', '', '').then(res => {
       return res.json()
     })
     this.messagesView.display(loadMore);
